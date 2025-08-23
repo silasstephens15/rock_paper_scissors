@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice(){
     const choices = ['rock', 'paper', 'scissors'];
     let random = Math.random() * 2;
@@ -13,44 +10,60 @@ function getHumanChoice(){
     return choice;
 };
 
-function playRound(humanChoice, computerChoice){
-    if (humanChoice === 'rock'){
-        if (computerChoice === 'rock'){
-            console.log('Tie!')
+function playGame(){
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(humanChoice, computerChoice){
+        if (humanChoice === 'rock'){
+            if (computerChoice === 'rock'){
+                console.log('Tie!')
+            };
+            if (computerChoice === 'paper'){
+                console.log('Computer Wins!');
+                computerScore++;
+            };
+            if (computerChoice === 'scissors'){
+                console.log('Human Wins!');
+                humanScore++;
+            };
         };
-        if (computerChoice === 'paper'){
-            console.log('Computer Wins!');
-            computerScore++;
+        if (humanChoice === 'paper'){
+            if (computerChoice === 'paper'){
+                console.log('Tie!')
+            };
+            if (computerChoice === 'scissors'){
+                console.log('Computer Wins!');
+                computerScore++;
+            };
+            if (computerChoice === 'rock'){
+                console.log('Human Wins!');
+                humanScore++;
+            };
         };
-        if (computerChoice === 'scissors'){
-            console.log('Human Wins!');
-            humanScore++;
+        if (humanChoice === 'scissors'){
+            if (computerChoice === 'scissors'){
+                console.log('Tie!')
+            };
+            if (computerChoice === 'rock'){
+                console.log('Computer Wins!');
+                computerScore++;
+            };
+            if (computerChoice === 'paper'){
+                console.log('You won the round!');
+                humanScore++;
+            };
         };
     };
-    if (humanChoice === 'paper'){
-        if (computerChoice === 'paper'){
-            console.log('Tie!')
-        };
-        if (computerChoice === 'scissors'){
-            console.log('Computer Wins!');
-            computerScore++;
-        };
-        if (computerChoice === 'rock'){
-            console.log('Human Wins!');
-            humanScore++;
-        };
+    for (let i = 0; i < 5; i++){
+        playRound(getHumanChoice(), getComputerChoice());
     };
-    if (humanChoice === 'scissors'){
-        if (computerChoice === 'scissors'){
-            console.log('Tie!')
-        };
-        if (computerChoice === 'rock'){
-            console.log('Computer Wins!');
-            computerScore++;
-        };
-        if (computerChoice === 'paper'){
-            console.log('Human Wins!');
-            humanScore++;
-        };
+    if (humanScore > computerScore){
+        console.log('You Win!')
+    }
+    else {
+        console.log('Computer Wins!')
     };
 };
+
+playGame()
