@@ -5,15 +5,14 @@ function getComputerChoice(){
     return choices[random]
 };
 
-function getHumanChoice(){
-    let choice = prompt('Enter rock, paper, or scissors: ');
-    choice = choice.toLowerCase();
-    return choice;
-};
-
 function playGame(){
     let humanScore = 0;
     let computerScore = 0;
+
+    const buttons = document.querySelectorAll('button');
+
+    buttons.forEach(button => button.addEventListener('click', function()
+    {playRound(button.id, getComputerChoice())}));
 
     function playRound(humanChoice, computerChoice){
         if (humanChoice === 'rock'){
@@ -55,9 +54,6 @@ function playGame(){
                 humanScore++;
             };
         };
-    };
-    for (let i = 0; i < 5; i++){
-        playRound(getHumanChoice(), getComputerChoice());
     };
     if (humanScore > computerScore){
         console.log('You Win!')
