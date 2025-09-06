@@ -9,6 +9,7 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
   const results = document.querySelector("#results");
+  const runningScore = document.querySelector("#running-score");
 
   const buttons = document.querySelectorAll("button");
 
@@ -41,7 +42,7 @@ function playGame() {
         computerScore++;
       }
       if (computerChoice === "rock") {
-        console.log("You won the round!");
+        results.textContent = "You won the round";
         humanScore++;
       }
     }
@@ -54,17 +55,23 @@ function playGame() {
         computerScore++;
       }
       if (computerChoice === "paper") {
-        console.log("You won the round!");
+        results.textContent = "You won the round";
         humanScore++;
       }
     }
-  }
-  if (humanScore > computerScore) {
-    results.textContent = "You win!";
-  } else if (humanScore < computerScore) {
-    console.log("Computer Wins!");
-  } else {
-    console.log("It is a Tie!");
+    if (humanScore === 5 || computerScore === 5) {
+      if (humanScore > computerScore) {
+        runningScore.textContent = "You win!";
+      } else if (humanScore < computerScore) {
+        runningScore.textContent = "Computer Wins!";
+      } else {
+        runningScore.textContent = "It is a Tie!";
+      }
+      humanScore = 0;
+      computerScore = 0;
+    } else {
+      runningScore.textContent = `Computer: ${computerScore}\nPlayer: ${humanScore}`;
+    }
   }
 }
 
